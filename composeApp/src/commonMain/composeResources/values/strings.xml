@@ -68,7 +68,7 @@
     <string name="prefs_schedule_exam_data">SCHEDULE_EXAM_DATA</string>
     <string name="prefs_reminder_date">REMINDER_DATE</string>
     <string name="prefs_allow_notifications">NOTIFICATIONS</string>
-    <string name="button_wrong">Μυθος</string>
+    <string name="button_false">Μυθος</string>
     <string name="button_true">Αληθεια</string>
     <string name="button_next">επομενο</string>
     <string name="answer_right">σωστο</string>
@@ -162,7 +162,7 @@
     <string name="push_notification_mammogram">Παρακαλώ πραγματοποιείστε μαστογραφικό έλεγχο</string>
     <string name="push_notification_clinical">Παρακαλώ πραγματοποιείστε κλινική εξέταση</string>
     <string name="actionbar_profile">Προφίλ χρήστη</string>
-    <string name="actionbar_menu">Menu</string>
+    <string name="actionbar_menu">Μενού</string>
     <string name="actionbar_contact">Επικοινωνία</string>
     <string name="actionbar_fb">Facebook events</string>
     <string name="actionbar_calendar">Ημερολόγιο</string>
