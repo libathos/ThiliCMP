@@ -8,48 +8,60 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class ThirdScreenViewModel(private val quizRepository: QuizRepository = QuizRepository()): ViewModel() {
+class ThirdScreenViewModel(private val quizRepository: QuizRepository = QuizRepository()) :
+    ViewModel() {
 
     private val _uiState = MutableStateFlow(ThirdScreenState())
     val uiState: StateFlow<ThirdScreenState> = _uiState.asStateFlow()
 
-    fun getQuizData() = try {
-        quizRepository.getQuizData(_uiState.value.questionIndex)
-    } catch (e: NoSuchElementException){
-        resetQuestionIndex()
-        quizRepository.getQuizData(_uiState.value.questionIndex)
-    }
+    fun getQuizData() = quizRepository.getQuizData(_uiState.value.questionIndex)
 
     fun getQuestionIndex() = _uiState.value.questionIndex
 
-    fun updateQuestionIndex(){
-        _uiState.update { currentState ->
-            currentState.copy(questionIndex = currentState.questionIndex + 1)
+    fun getCorrectAnswersCount() = _uiState.value.correctAnswers
+
+    fun updateQuestionIndex() {
+        if (getQuestionIndex() == 1) {
+            _uiState.update { currentState ->
+                currentState.copy(shouldShowFinalScreen = true)
+            }
+        } else {
+            _uiState.update { currentState ->
+                currentState.copy(questionIndex = currentState.questionIndex + 1)
+            }
         }
     }
 
-    private fun resetQuestionIndex(){
+    fun resetQuestionIndex() {
         _uiState.update { currentState ->
-            currentState.copy(questionIndex = 0)
+            currentState.copy(
+                questionIndex = 0,
+                shouldShowFinalScreen = false,
+                shouldShowAnswerCard = false,
+                correctAnswers = 0
+            )
         }
     }
 
-    fun updateCorrectAnswers(){
-        _uiState.update { currentState ->
-            currentState.copy(correctAnswers = currentState.correctAnswers + 1)
+    fun updateCorrectAnswers(isAnswerCorrect: Boolean) {
+        if (isAnswerCorrect) {
+            _uiState.update { currentState ->
+                currentState.copy(correctAnswers = currentState.correctAnswers + 1)
+            }
         }
     }
-    fun showAnswerCard(usersAnswer: Boolean){
+
+    fun showAnswerCard(usersAnswer: Boolean) {
         _uiState.update { currentState ->
             currentState.copy(shouldShowAnswerCard = true, usersAnswer = usersAnswer)
         }
     }
-    fun showQuestionCard(){
+
+    fun showQuestionCard() {
         _uiState.update { currentState ->
             currentState.copy(shouldShowAnswerCard = false)
         }
     }
-
 
 
 }

@@ -22,7 +22,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import compose.thili.demo.firstscreen.viewmodel.FirstScreenViewModel
 import compose.thili.demo.ui.components.BottomButtonComposable
 import org.jetbrains.compose.resources.stringResource
 import thilicmp.composeapp.generated.resources.Res
@@ -35,7 +34,6 @@ import thilicmp.composeapp.generated.resources.welcome_message_third
 
 @Composable
 fun FirstScreen(
-    viewModel: FirstScreenViewModel = androidx.lifecycle.viewmodel.compose.viewModel { FirstScreenViewModel() },
     onNextButtonClick: () -> Unit
 ) {
     Column(Modifier.fillMaxSize().padding(20.dp).background(Color.White)) {

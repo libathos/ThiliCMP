@@ -48,7 +48,9 @@ fun ThirdScreen(
                 )
             ) {
 
-                if (uiState.shouldShowAnswerCard) {
+                if(uiState.shouldShowFinalScreen) {
+                    showResult(viewModel)
+                } else if (uiState.shouldShowAnswerCard) {
                     showAnswer(viewModel = viewModel, uiState.usersAnswer)
                 } else {
                     showQuestion(viewModel = viewModel)
@@ -82,9 +84,19 @@ fun showAnswer(viewModel: ThirdScreenViewModel, usersAnswer: Boolean) {
             answerStatusColor = getAnswerStatusColor(usersAnswer, getQuizData().isItTrue),
             explanation = stringResource(getQuizData().answer),
             onNextButtonClicked = {
+                updateCorrectAnswers(usersAnswer == getQuizData().isItTrue)
                 updateQuestionIndex()
                 showQuestionCard()
             })
+    }
+}
+
+@Composable
+fun showResult(viewModel: ThirdScreenViewModel) {
+    with(viewModel){
+        QuizResultScreen(onShareButtonClicked = { /*TODO*/ },
+            onTryAgainButtonClicked = { viewModel.resetQuestionIndex() },
+            modifier = Modifier,getCorrectAnswersCount())
     }
 }
 
