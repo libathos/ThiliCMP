@@ -42,7 +42,7 @@ fun QuizResultScreen(
     modifier: Modifier = Modifier,
     correctAnswers: Int
 ) {
-    
+
     Box(modifier = modifier.fillMaxSize().padding(20.dp)) {
         Box(
             modifier = Modifier.fillMaxWidth()

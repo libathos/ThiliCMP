@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import compose.thili.demo.ThiliScreens
+import compose.thili.demo.sharemanager.rememberShareManager
 import compose.thili.demo.thirdscreen.viewmodel.ThirdScreenViewModel
 import compose.thili.demo.ui.components.ThiliAppBar
 import org.jetbrains.compose.resources.painterResource
@@ -22,6 +23,7 @@ import thilicmp.composeapp.generated.resources.answer_right
 import thilicmp.composeapp.generated.resources.answer_wrong
 import thilicmp.composeapp.generated.resources.back
 import thilicmp.composeapp.generated.resources.quiz_question_title
+import thilicmp.composeapp.generated.resources.share_text
 
 @Composable
 fun ThirdScreen(
@@ -31,6 +33,8 @@ fun ThirdScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+    val shareManager = rememberShareManager()
+
 
     Scaffold(topBar = {
         ThiliAppBar(
@@ -49,7 +53,8 @@ fun ThirdScreen(
             ) {
 
                 if(uiState.shouldShowFinalScreen) {
-                    showResult(viewModel)
+                    val textToShare = stringResource(Res.string.share_text,viewModel.getCorrectAnswersCount())
+                    showResult(viewModel) { shareManager.share(textToShare) }
                 } else if (uiState.shouldShowAnswerCard) {
                     showAnswer(viewModel = viewModel, uiState.usersAnswer)
                 } else {
@@ -92,9 +97,9 @@ fun showAnswer(viewModel: ThirdScreenViewModel, usersAnswer: Boolean) {
 }
 
 @Composable
-fun showResult(viewModel: ThirdScreenViewModel) {
+fun showResult(viewModel: ThirdScreenViewModel,onShareButtonClicked: () -> Unit) {
     with(viewModel){
-        QuizResultScreen(onShareButtonClicked = { /*TODO*/ },
+        QuizResultScreen(onShareButtonClicked = onShareButtonClicked ,
             onTryAgainButtonClicked = { viewModel.resetQuestionIndex() },
             modifier = Modifier,getCorrectAnswersCount())
     }

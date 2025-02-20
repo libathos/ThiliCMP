@@ -21,7 +21,7 @@ class ThirdScreenViewModel(private val quizRepository: QuizRepository = QuizRepo
     fun getCorrectAnswersCount() = _uiState.value.correctAnswers
 
     fun updateQuestionIndex() {
-        if (getQuestionIndex() == 1) {
+        if (getQuestionIndex() == 1/*9*/) {
             _uiState.update { currentState ->
                 currentState.copy(shouldShowFinalScreen = true)
             }
