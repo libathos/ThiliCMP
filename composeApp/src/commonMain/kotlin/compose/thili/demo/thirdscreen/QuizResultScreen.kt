@@ -1,6 +1,5 @@
 package compose.thili.demo.thirdscreen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -24,12 +23,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import compose.thili.demo.getPlatform
 import compose.thili.demo.ui.components.BottomButtonComposable
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import thilicmp.composeapp.generated.resources.Res
 import thilicmp.composeapp.generated.resources.finished_quiz_banner
 import thilicmp.composeapp.generated.resources.quiz_disclaimer
+import thilicmp.composeapp.generated.resources.quiz_disclaimer2
 import thilicmp.composeapp.generated.resources.quiz_final_result
 import thilicmp.composeapp.generated.resources.quiz_share_score
 import thilicmp.composeapp.generated.resources.quiz_try_again
@@ -56,7 +57,7 @@ fun QuizResultScreen(
 
 
                 Box(
-                    modifier = Modifier.fillMaxWidth().paint(
+                    modifier = Modifier.height(300.dp).fillMaxWidth().paint(
                         painterResource(Res.drawable.finished_quiz_banner), contentScale = ContentScale.FillBounds
                     )
                 ) {
@@ -87,7 +88,8 @@ fun QuizResultScreen(
 
 
                 Text(
-                    text = stringResource(Res.string.quiz_disclaimer),
+                    text = if (getPlatform().name.contains("Java")) stringResource(Res.string.quiz_disclaimer2)
+                            else stringResource(Res.string.quiz_disclaimer),
                     modifier = Modifier.padding(10.dp),
                     style = TextStyle(
                         fontSize = 15.sp,

@@ -8,7 +8,6 @@ import androidx.compose.ui.platform.LocalContext
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class ShareManager(private val context: Context) {
-
     actual fun share(text:String){
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"

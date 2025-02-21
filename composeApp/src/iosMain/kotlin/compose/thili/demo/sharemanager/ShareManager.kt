@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class ShareManager {
 
     actual fun share(text:String) {

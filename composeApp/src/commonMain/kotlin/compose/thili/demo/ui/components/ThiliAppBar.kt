@@ -18,13 +18,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import compose.thili.demo.ThiliScreens
+import compose.thili.demo.getPlatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import thilicmp.composeapp.generated.resources.Res
 import thilicmp.composeapp.generated.resources.ic_launcher_foreground
+import thilicmp.composeapp.generated.resources.ic_launcher_foreground_toolbar
+import thilicmp.composeapp.generated.resources.quiz_disclaimer
+import thilicmp.composeapp.generated.resources.quiz_disclaimer2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,8 +45,7 @@ fun ThiliAppBar(
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = ""
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = ""
                     )
                 }
             }
@@ -67,7 +68,8 @@ fun CenteredTextWithEndIcon(currentScreen: ThiliScreens) {
             )
 
             Icon(
-                painter = painterResource(Res.drawable.ic_launcher_foreground),
+                painter = if (getPlatform().name.contains("Java")) painterResource(Res.drawable.ic_launcher_foreground_toolbar)
+                else painterResource(Res.drawable.ic_launcher_foreground),
                 contentDescription = "App Icon",
                 modifier = Modifier.align(Alignment.CenterEnd),
                 tint = null

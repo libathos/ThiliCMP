@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import compose.thili.demo.ThiliScreens
+import compose.thili.demo.sharemanager.ShareManager
 import compose.thili.demo.sharemanager.rememberShareManager
 import compose.thili.demo.thirdscreen.viewmodel.ThirdScreenViewModel
 import compose.thili.demo.ui.components.ThiliAppBar
