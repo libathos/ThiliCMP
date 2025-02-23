@@ -1,5 +1,6 @@
 package compose.thili.demo.theme
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -72,5 +73,5 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun ThiliTheme(content: @Composable () -> Unit) {
 
-    MaterialTheme(content = content)
+    MaterialTheme(content = content, colorScheme = if (isSystemInDarkTheme()) DarkColors else LightColors)
 }

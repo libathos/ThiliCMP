@@ -25,8 +25,6 @@ import org.jetbrains.compose.resources.stringResource
 import thilicmp.composeapp.generated.resources.Res
 import thilicmp.composeapp.generated.resources.ic_launcher_foreground
 import thilicmp.composeapp.generated.resources.ic_launcher_foreground_toolbar
-import thilicmp.composeapp.generated.resources.quiz_disclaimer
-import thilicmp.composeapp.generated.resources.quiz_disclaimer2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -2,7 +2,6 @@ package compose.thili.demo.secondscreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -60,7 +59,11 @@ import thilicmp.composeapp.generated.resources.woman
 
 
 @Composable
-fun SecondScreen(canNavigateBack: Boolean, navigateUp: () -> Unit, onQuizSelected: () -> Unit) {
+fun SecondScreen(canNavigateBack: Boolean, navigateUp: () -> Unit,
+                 onQuizSelected: () -> Unit,
+                 onScheduleAppointmentForSelfExamSelected: () -> Unit,
+                 onScheduleAppointmentForClinicalExamSelected: () -> Unit,
+                 onScheduleAppointmentForMammogramSelected: () -> Unit) {
 
     Scaffold(topBar = {
         ThiliAppBar(
@@ -101,19 +104,22 @@ fun SecondScreen(canNavigateBack: Boolean, navigateUp: () -> Unit, onQuizSelecte
                             StartTextWithStartIcon(
                                 stringResource(Res.string.menu_second),
                                 true,
-                                painterResource(Res.drawable.woman)
+                                painterResource(Res.drawable.woman),
+                                onSelected = onScheduleAppointmentForSelfExamSelected
                             )
 
                             StartTextWithStartIcon(
                                 stringResource(Res.string.menu_third),
                                 true,
-                                painterResource(Res.drawable.info)
+                                painterResource(Res.drawable.info),
+                                onSelected = onScheduleAppointmentForClinicalExamSelected
                             )
 
                             StartTextWithStartIcon(
                                 stringResource(Res.string.menu_fourth),
                                 true,
-                                painterResource(Res.drawable.tick2)
+                                painterResource(Res.drawable.tick2),
+                                onSelected = onScheduleAppointmentForMammogramSelected
                             )
 
                             StartTextWithStartIcon(

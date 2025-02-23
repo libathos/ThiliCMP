@@ -17,7 +17,7 @@ package compose.thili.demo.theme
 
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFF984062)
+val md_theme_light_primary = Color(0xFFFA5E73)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFD9E2)
 val md_theme_light_onPrimaryContainer = Color(0xFF3E001E)
