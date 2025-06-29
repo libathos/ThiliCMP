@@ -46,7 +46,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.lifecycle.viewmodel.compose)
             implementation(libs.navigation.compose)
-
+            implementation(libs.dateTime)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

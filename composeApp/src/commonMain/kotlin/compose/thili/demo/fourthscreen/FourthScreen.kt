@@ -2,6 +2,7 @@ package compose.thili.demo.fourthscreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +14,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,6 +36,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.thili.demo.ThiliScreens
+import compose.thili.demo.ui.components.MyCMPDatePicker
+import compose.thili.demo.ui.components.MyCMPTimePicker
 import compose.thili.demo.ui.components.ThiliAppBar
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -59,6 +64,26 @@ fun FourthScreen(
 
     var time by remember { mutableStateOf("") }
     var note by remember { mutableStateOf("") }
+
+    var showDatePickerPopup by remember { mutableStateOf(false) }
+    var showTimePickerPopup by remember { mutableStateOf(false) }
+
+    MyCMPDatePicker(
+        showDialog = showDatePickerPopup,
+        onDismiss = { showDatePickerPopup = false },
+        onDateSelected = { formattedDate ->
+            date = formattedDate
+        }
+    )
+
+    MyCMPTimePicker(
+        showDialog = showTimePickerPopup,
+        onDismiss = { showTimePickerPopup = false },
+        onTimeSelected = { hour, minute ->
+            time = "${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}"
+        },
+        is24Hour = true
+    )
 
     Scaffold(topBar = {
         ThiliAppBar(
@@ -94,7 +119,8 @@ fun FourthScreen(
                                 style = TextStyle(fontSize = 16.sp, color = Color.Black),
                                 modifier = Modifier.padding(top = 15.dp)
                             )
-                            OutlinedTextField(value = title,
+                            OutlinedTextField(
+                                value = title,
                                 onValueChange = { title = it },
                                 modifier = Modifier.fillMaxWidth(),
                                 textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
@@ -103,7 +129,7 @@ fun FourthScreen(
                                 keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                                     imeAction = ImeAction.Go
                                 ),
-                                placeholder = { Text(text = stringResource(currentScreen.title!!))})
+                                placeholder = { Text(text = stringResource(currentScreen.title!!)) })
                             Spacer(
                                 modifier = Modifier.height(2.dp).fillMaxWidth()
                                     .background(Color(0xFFc7d2e8))
@@ -113,13 +139,30 @@ fun FourthScreen(
                                 style = TextStyle(fontSize = 16.sp, color = Color.Black),
                                 modifier = Modifier.padding(top = 20.dp)
                             )
-                            OutlinedTextField(value = date,
+                            OutlinedTextField(
+                                value = date,
                                 onValueChange = { date = it },
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth()
+                                    .clickable {
+                                        showDatePickerPopup = true
+                                    },
                                 textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
                                 singleLine = true,
                                 readOnly = true,
-                                placeholder = { Text(text = stringResource(Res.string.schedule_mammogram_date_hint)) })
+                                enabled = false,
+                                placeholder = { Text(text = stringResource(Res.string.schedule_mammogram_date_hint)) },
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    disabledTextColor = MaterialTheme.colorScheme.onSurface,
+                                    disabledContainerColor = Color.Transparent,
+                                    disabledBorderColor = MaterialTheme.colorScheme.outline,
+                                    disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledSupportingTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+
+                                    )
+                            )
                             Spacer(
                                 modifier = Modifier.height(2.dp).fillMaxWidth()
                                     .background(Color(0xFFc7d2e8))
@@ -129,12 +172,29 @@ fun FourthScreen(
                                 style = TextStyle(fontSize = 16.sp, color = Color.Black),
                                 modifier = Modifier.padding(top = 20.dp)
                             )
-                            OutlinedTextField(value = time,
+                            OutlinedTextField(
+                                value = time,
                                 onValueChange = { time = it },
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth()
+                                    .clickable {
+                                        showTimePickerPopup = true
+                                    },
                                 textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
                                 readOnly = true,
-                                placeholder = { Text(text = stringResource(Res.string.schedule_mammogram_hour_hint)) })
+                                enabled = false,
+                                placeholder = { Text(text = stringResource(Res.string.schedule_mammogram_hour_hint)) },
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    disabledTextColor = MaterialTheme.colorScheme.onSurface,
+                                    disabledContainerColor = Color.Transparent,
+                                    disabledBorderColor = MaterialTheme.colorScheme.outline,
+                                    disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    disabledSupportingTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+
+                                    )
+                            )
                             Spacer(
                                 modifier = Modifier.height(2.dp).fillMaxWidth()
                                     .background(Color(0xFFc7d2e8))
@@ -144,7 +204,8 @@ fun FourthScreen(
                                 style = TextStyle(fontSize = 16.sp, color = Color.Black),
                                 modifier = Modifier.padding(top = 20.dp)
                             )
-                            OutlinedTextField(value = note,
+                            OutlinedTextField(
+                                value = note,
                                 onValueChange = { note = it },
                                 modifier = Modifier.fillMaxWidth(),
                                 textStyle = TextStyle(fontSize = 14.sp, color = Color.Black),
@@ -164,8 +225,10 @@ fun FourthScreen(
                                     .clip(RoundedCornerShape(16.dp))
                                     .background(Color(0xFFFA5E73))
                             ) {
-                                Text(text = stringResource(Res.string.profile_save).uppercase(),
-                                    color = Color.White)
+                                Text(
+                                    text = stringResource(Res.string.profile_save).uppercase(),
+                                    color = Color.White
+                                )
                             }
 
                         }
