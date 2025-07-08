@@ -84,20 +84,17 @@ fun App(navController: NavHostController = rememberNavController()) {
 
         composable(route = ThiliScreens.ScheduleAppointmentSelfExamScreen.name) {
             FourthScreen(currentScreen = ThiliScreens.ScheduleAppointmentSelfExamScreen,canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() },
-                {})
+                navigateUp = { navController.navigateUp() })
         }
 
         composable(route = ThiliScreens.ScheduleAppointmentSelfClinicalExamScreen.name) {
             FourthScreen(currentScreen = ThiliScreens.ScheduleAppointmentSelfClinicalExamScreen,canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() },
-                {})
+                navigateUp = { navController.navigateUp() })
         }
 
         composable(route = ThiliScreens.ScheduleAppointmentSelfMammogramScreen.name) {
             FourthScreen(currentScreen = ThiliScreens.ScheduleAppointmentSelfMammogramScreen, canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() },
-                {})
+                navigateUp = { navController.navigateUp() })
         }
 
     }

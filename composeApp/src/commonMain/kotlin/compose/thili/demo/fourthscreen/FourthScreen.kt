@@ -36,6 +36,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.thili.demo.ThiliScreens
+import compose.thili.demo.notification.NotificationServiceFactory
 import compose.thili.demo.ui.components.MyCMPDatePicker
 import compose.thili.demo.ui.components.MyCMPTimePicker
 import compose.thili.demo.ui.components.ThiliAppBar
@@ -56,8 +57,7 @@ import thilicmp.composeapp.generated.resources.schedule_mammogram_title
 fun FourthScreen(
     currentScreen: ThiliScreens,
     canNavigateBack: Boolean,
-    navigateUp: () -> Unit,
-    onSaveButtonClicked: () -> Unit
+    navigateUp: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var date by remember { mutableStateOf("") }
@@ -67,6 +67,9 @@ fun FourthScreen(
 
     var showDatePickerPopup by remember { mutableStateOf(false) }
     var showTimePickerPopup by remember { mutableStateOf(false) }
+
+    // Store the screen title for use in notification
+    val screenTitle = currentScreen.title?.let { stringResource(it) } ?: "ThiliCMP"
 
     MyCMPDatePicker(
         showDialog = showDatePickerPopup,
@@ -219,7 +222,27 @@ fun FourthScreen(
                             )
 
                             TextButton(
-                                onClick = onSaveButtonClicked,
+                                onClick = {
+                                    // Schedule notification if date and time are selected
+                                    if (date.isNotEmpty() && time.isNotEmpty()) {
+                                        val notificationService = NotificationServiceFactory.createNotificationService()
+                                        val notificationTitle = title.ifEmpty { screenTitle }
+
+                                        val success = notificationService.scheduleNotification(
+                                            title = notificationTitle,
+                                            message = note,
+                                            dateString = date,
+                                            timeString = time
+                                        )
+
+                                        if (success) {
+                                            println("Notification scheduled successfully for $date at $time")
+                                        } else {
+                                            println("Failed to schedule notification")
+                                        }
+                                    }
+                                    navigateUp()
+                                },
                                 modifier = Modifier.fillMaxWidth()
                                     .padding(horizontal = 10.dp, vertical = 50.dp)
                                     .clip(RoundedCornerShape(16.dp))

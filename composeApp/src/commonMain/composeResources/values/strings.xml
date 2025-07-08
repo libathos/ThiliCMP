@@ -43,6 +43,7 @@
     <string name="history_no">Δεν Υπάρχει</string>
     <string name="button_ok">ok</string>
     <string name="button_cancel">cancel</string>
+    <string name="button_later">Later</string>
     <string name="button_allow">Allow</string>
     <string name="button_dont_allow">Don\'t Allow</string>
     <string name="pms_duration_validation">Η διάρκεια της περιόδου μπορεί να έχει τιμή απο 3 μέρες έως 10 μέρες</string>
@@ -50,7 +51,9 @@
     <string name="profile_fields_not_empty_validation">Παρακάλω συμπληρώστε όλα τα πεδία για το προφίλ χρήστη</string>
     <string name="profile_pms_validation">Η ημερομηνία της τελευταίας περιόδου μπορεί να έιναι οποιαδίποτε μέχρι και 35 μέρες πριν από τη σημερινή</string>
     <string name="profile_young_validation">H παρούσα εφαρμογή δεν απευθύνεται σε παιδιά</string>
-    <string name="notification_dialog_title">Η \"Thili\" θα ήθελε να σας στείλει ειδοποιήσεις</string>
+    <string name="notification_dialog_title">Η Thili θα ήθελε να σας στείλει ειδοποιήσεις</string>
+    <string name="notification_dialog_main">Ειδοποιήσεις</string>
+    <string name="notification_dialog_main_text">Η Thili θα χρειάζεται την άδεια σας για την εμφάνιση ειδοποιήσεων και ενημερώσεων.</string>
     <string name="notification_dialog_message">Οι ειδοποιήσεις μπορεί να συμπεριλάβουν ηχητικά ή οπτικά μηνύματα, τα οποία μπορούν να διαμορφωθούν στις ρυθμίσεις του κινητού. Αν θέλετε να λαμβάνετε ακριβείς ειδοποιήσεις, θα πρέπει να συμπεριλάβετε την εφαρμογή στην λίστα επιτρεπόντων στο επόμενο παράθυρο. Αν δεν την συμπεριλάβετε, οι ειδοποιήσεις θα παραδωθούν κατ\'επιλογή του λειτουργικού</string>
     <string name="notification_dialog_title_en">\"Thili\" Would Like to Send You Notifications</string>
     <string name="notification_dialog_message_en">Notifications may include alerts, sounds and icon badges, These can be configured in Settings. If you want to receive exact notifications, you should prompt to whitelist the app in the next dialog. If you deny, notifications will be delivered whenever battery optimizations permit it</string>
