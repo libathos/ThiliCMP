@@ -6,8 +6,6 @@ import java.awt.Image
 import java.awt.SystemTray
 import java.awt.Toolkit
 import java.awt.TrayIcon
-import java.time.LocalDateTime
-import java.time.ZoneId
 import java.util.Timer
 import java.util.TimerTask
 import javax.swing.SwingUtilities
