@@ -82,8 +82,10 @@ class IOSNotificationService : NotificationService {
                 false // Do not repeat
             )
 
-            // Create request
-            val requestIdentifier = "ThiliCMP_Notification_${NSDate().timeIntervalSince1970.toLong()}"
+            // Create request with a unique identifier
+            // Combine multiple elements to ensure uniqueness even when scheduled in quick succession
+            val uniqueId = "${title}_${message}_${dateString}_${timeString}_${NSDate().timeIntervalSince1970}"
+            val requestIdentifier = "ThiliCMP_Notification_${uniqueId.hashCode()}"
             val request = UNNotificationRequest.requestWithIdentifier(
                 requestIdentifier,
                 content,
